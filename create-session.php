@@ -23,7 +23,7 @@ $query5 = mysqli_query($con, "SELECT idhorario, horario FROM horarios");
 
 <body class="bg-success ">
 
-<nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/index.php">UDESCine</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +44,8 @@ $query5 = mysqli_query($con, "SELECT idhorario, horario FROM horarios");
             <a class="nav-link" href="room-view.php">Salas</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="rank.php">Ranking</a>
-        </li>
+            <a class="nav-link" href="rank.php">Ranking</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -53,71 +53,71 @@ $query5 = mysqli_query($con, "SELECT idhorario, horario FROM horarios");
 
   <div class="container mt-5">
 
-  <?php include('message.php'); ?>
+    <?php include('message.php'); ?>
 
-  <div class="row ">
-            <div class="col-md-12">
-                <div class="card bg-dark text-white">
-                    <div class="card-header">
-                        <h4>Criar Sessão 
-                            <a href="index.php" class="btn btn-danger float-end">BACK</a>
-                        </h4>
-                    </div>
-                    <div class="card-body ms-3">
-                        <form action="code.php" method="POST">
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="card bg-dark text-white">
+          <div class="card-header">
+            <h4>Criar Sessão
+              <a href="index.php" class="btn btn-danger float-end">BACK</a>
+            </h4>
+          </div>
+          <div class="card-body ms-3">
+            <form action="code.php" method="POST">
 
-                            <div class="mb-3  " >
-                                <label>Sala da Sessão</label>
-                                <select class="form-select" id="idsala" name="idsala" aria-label="Default select example">
-                                <option >Selecione...</option>
-                                <?php while ($sala = mysqli_fetch_array($query4)) { ?>
-                                <option value="<?php echo $sala['idsala'] ?>"><?php echo $sala['nomesala'] ?></option>
-                                <?php } ?>
-                                </select>
-                            </div>
-                            <div class="mb-3 ">
-                                <label>Tipo Sessão</label>
-                                <input type="varchar" id="tiposessao" name="tiposessao"  class="form-control">
-                            </div>
-                            <div class="mb-3  ">
-                                <label>Filme da Sessão</label> <select class="form-select" id="idfilme" name="idfilme" aria-label="Default select example">
-                                <option>Selecione...</option>
-                                <?php while ($prod = mysqli_fetch_array($query2)) { ?>
-                                <option value="<?php echo $prod['idfilme'] ?>"><?php echo $prod['titulopt'] ?></option>
-                                <?php } ?>
-                                </select>
-                            </div>
-                            <div class="mb-3 ">
-                                <label>Sigla</label> 
-                                <select class="form-select" id="sigla" name="sigla" aria-label="Default select example">
-                                <option>Selecione...</option>
-                                <?php while ($sigla = mysqli_fetch_array($query3)) { ?>
-                                <option value="<?php echo $sigla['sigla'] ?>"><?php echo $sigla['sigla'] ?></option>
-                                <?php } ?>
-                             </select>
-                            </div>
-                            <div class="mb-3 ">
-                                <label>Data Sessão</label>
-                                <input type="date" id="datasessao" name="datasessao" class="form-control">
-                            </div>
+              <div class="mb-3  ">
+                <label>Sala da Sessão</label>
+                <select class="form-select" id="idsala" name="idsala" aria-label="Default select example">
+                  <option>Selecione...</option>
+                  <?php while ($sala = mysqli_fetch_array($query4)) { ?>
+                    <option value="<?php echo $sala['idsala'] ?>"><?php echo $sala['nomesala'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="mb-3 ">
+                <label>Tipo Sessão</label>
+                <input type="varchar" id="tiposessao" name="tiposessao" class="form-control">
+              </div>
+              <div class="mb-3  ">
+                <label>Filme da Sessão</label> <select class="form-select" id="idfilme" name="idfilme" aria-label="Default select example">
+                  <option>Selecione...</option>
+                  <?php while ($prod = mysqli_fetch_array($query2)) { ?>
+                    <option value="<?php echo $prod['idfilme'] ?>"><?php echo $prod['titulopt'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="mb-3 ">
+                <label>Sigla</label>
+                <select class="form-select" id="sigla" name="sigla" aria-label="Default select example">
+                  <option>Selecione...</option>
+                  <?php while ($sigla = mysqli_fetch_array($query3)) { ?>
+                    <option value="<?php echo $sigla['sigla'] ?>"><?php echo $sigla['sigla'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="mb-3 ">
+                <label>Data Sessão</label>
+                <input type="date" id="datasessao" name="datasessao" class="form-control">
+              </div>
 
-                            <div class="mb-3 ">
-                                <label>Horário Sessão</label>
-                                <select class="form-select" id="idhorario" name="idhorario" aria-label="Default select example">
-                                <option>Selecione...</option>
-                                <?php while ($horario = mysqli_fetch_array($query5)) { ?>
-                                <option value="<?php echo $horario['idhorario'] ?>"><?php echo $horario['horario'] ?></option>
-                                <?php } ?>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <button type="submit" name="create_session" class="btn btn-primary">Salvar Sessão</button>
-                            </div>
+              <div class="mb-3 ">
+                <label>Horário Sessão</label>
+                <select class="form-select" id="idhorario" name="idhorario" aria-label="Default select example">
+                  <option>Selecione...</option>
+                  <?php while ($horario = mysqli_fetch_array($query5)) { ?>
+                    <option value="<?php echo $horario['idhorario'] ?>"><?php echo $horario['horario'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
 
-                        </form>
-                    </div>
-                </div>
-            </div>
+              <div class="mb-3">
+                <button type="submit" name="create_session" class="btn btn-primary">Salvar Sessão</button>
+              </div>
+
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
   </div>

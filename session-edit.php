@@ -22,7 +22,7 @@ $query4 = mysqli_query($con, "SELECT idsala, nomesala FROM salas");
 
 <body class="bg-dark bg-gradient">
 
-<nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/index.php">UDESCine</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,8 @@ $query4 = mysqli_query($con, "SELECT idsala, nomesala FROM salas");
             <a class="nav-link" href="room-view.php">Salas</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="rank.php">Ranking</a>
-        </li>
+            <a class="nav-link" href="rank.php">Ranking</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -52,7 +52,7 @@ $query4 = mysqli_query($con, "SELECT idsala, nomesala FROM salas");
 
   <div class="container mt-5">
 
-  <?php include('message.php'); ?>
+    <?php include('message.php'); ?>
 
     <div class="row">
       <div class="col-md-12">
@@ -84,13 +84,13 @@ $query4 = mysqli_query($con, "SELECT idsala, nomesala FROM salas");
                   <input type="hidden" id="idsessao" name="idsessao" value="<?= $sessoes['idsessao']; ?>">
 
                   <div class="mb-3">
-                  <label for="idsala">Sala da Sessão</label>
+                    <label for="idsala">Sala da Sessão</label>
                     <select class="form-select" id="idsala" name="idsala" aria-label="Default select example">
-                    <option selected value="<?= $sessoes['idsala']; ?>"><?php echo $sessoes['nomesala'] ?></option>
-                    <?php while ($sala = mysqli_fetch_array($query4)) { ?>
-                      <option value="<?php echo $sala['idsala'] ?>"><?php echo $sala['nomesala'] ?></option>
-                    <?php } ?>
-                  </select>
+                      <option selected value="<?= $sessoes['idsala']; ?>"><?php echo $sessoes['nomesala'] ?></option>
+                      <?php while ($sala = mysqli_fetch_array($query4)) { ?>
+                        <option value="<?php echo $sala['idsala'] ?>"><?php echo $sala['nomesala'] ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
 
                   <div class="mb-3">
@@ -99,31 +99,31 @@ $query4 = mysqli_query($con, "SELECT idsala, nomesala FROM salas");
                   </div>
 
                   <div class="mb-3">
-                  <label for="idfilme">Filme da Sessão</label>
+                    <label for="idfilme">Filme da Sessão</label>
                     <select class="form-select" id="idfilme" name="idfilme" aria-label="Default select example">
-                    <option selected value="<?= $sessoes['idfilme']; ?>"><?php echo $sessoes['titulopt'] ?></option>
-                    <?php while ($prod = mysqli_fetch_array($query2)) { ?>
-                      <option value="<?php echo $prod['idfilme'] ?>"><?php echo $prod['titulopt'] ?></option>
-                    <?php } ?>
-                  </select>
+                      <option selected value="<?= $sessoes['idfilme']; ?>"><?php echo $sessoes['titulopt'] ?></option>
+                      <?php while ($prod = mysqli_fetch_array($query2)) { ?>
+                        <option value="<?php echo $prod['idfilme'] ?>"><?php echo $prod['titulopt'] ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
 
                   <div class="mb-3">
-                      <label for="sigla">Sigla</label>
+                    <label for="sigla">Sigla</label>
                     <select class="form-select" id="sigla" name="sigla" aria-label="Default select example">
-                    <option selected value="<?= $sessoes['sigla']; ?>"><?php echo $sessoes['sigla'] ?></option>
-                    <?php while ($sigla = mysqli_fetch_array($query3)) { ?>
-                      <option value="<?php echo $sigla['sigla'] ?>"><?php echo $sigla['sigla'] ?></option>
-                    <?php } ?>
-                  </select>
+                      <option selected value="<?= $sessoes['sigla']; ?>"><?php echo $sessoes['sigla'] ?></option>
+                      <?php while ($sigla = mysqli_fetch_array($query3)) { ?>
+                        <option value="<?php echo $sigla['sigla'] ?>"><?php echo $sigla['sigla'] ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
 
-                  
+
                   <div class="mb-3">
                     <label>Data Sessão</label>
                     <input type="date" id="datasessao" value="<?= $sessoes['datasessao']; ?>" class="form-control">
                   </div>
-                  
+
                   <div class="mb-3">
                     <label>Horário da Sessão</label>
                     <input type="time" id="horario" name="horario" value="<?= $sessoes['horario']; ?>" class="form-control">
