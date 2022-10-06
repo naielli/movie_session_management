@@ -179,3 +179,35 @@ if (isset($_POST['save_director'])) {
         exit(0);
     }
 }
+
+if(isset($_POST['update_movie'])){
+    $idfilme = mysqli_real_escape_string($con, $_POST['idfilme']);
+    $titulopt = mysqli_real_escape_string($con, $_POST['titulopt']);
+    $tituloen = mysqli_real_escape_string($con, $_POST['tituloen']);
+    $anolancamento = mysqli_real_escape_string($con, $_POST['anolancamento']);
+    $sinopse = mysqli_real_escape_string($con, $_POST['sinopse']);
+    $duracao = mysqli_real_escape_string($con, $_POST['duracao']);
+    $datain = mysqli_real_escape_string($con, $_POST['datain']);
+    $dataf = mysqli_real_escape_string($con, $_POST['dataf']);
+    $classificacao = mysqli_real_escape_string($con, $_POST['classificacao']);
+    $diretor = mysqli_real_escape_string($con, $_POST['iddiretor']);
+    $pais = mysqli_real_escape_string($con, $_POST['idpais']);
+
+    $query = "UPDATE filmes SET titulopt='$titulopt',tituloen='$tituloen', 
+    anolancamento='$anolancamento', sinopse='$sinopse', duracao='$duracao', 
+    datain='$datain', dataf='$dataf',classificacao = '$classificacao', iddiretor = '$diretor', idpais = '$pais' WHERE idfilme='$idfilme' "; 
+
+    $query_run = mysqli_query($con, $query);
+    if($query_run)
+    {
+        $_SESSION['message'] = "Filme Atualizado";
+        header("Location: movie.php");
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Filme Não Atulizou";
+        header("Location: movie.php");
+        exit(0);
+    }
+}
