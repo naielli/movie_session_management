@@ -62,7 +62,7 @@ $query4 = mysqli_query($con, "SELECT idgenero,nomegenero FROM generos");
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="country-create.php" class="btn btn btn-outline-secondary ">Cadastrar País</a>
                                 <a href="director-create.php" class="btn btn btn-outline-secondary ">Cadastrar Diretor</a>
-                                <a href="index.php" class="btn btn-danger me-md-2">BACK</a>
+                                <a href="movie.php" class="btn btn-danger me-md-2">BACK</a>
                         </h4>
 
                     </div>
