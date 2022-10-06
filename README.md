@@ -10,9 +10,7 @@ com as salas mais utilizadas, os filmes que estão em mais sessões e os países
 
 ## Funcionamento
 
-Para utilizar esse sistema é necessário ter o Software XAMPP e incluir a pasta do projeto dentro da pasta htdocs do XAMPP;
-Também é necessário pegar o dump do sql e importar no MYSql;
-Depois é só acessar o domínio via localhost.
+Para utilizar essa aplicação é necessário ter o Software XAMPP e incluir a pasta do projeto dentro da pasta htdocs do XAMPP, depois é necessário pegar o dump do banco de dados (arquivo cinema.sql) e importar no MYSql. Depois é só acessar a aplicação pelo localhost no navegador.
 
 ## 🛠 Tecnologias
 
