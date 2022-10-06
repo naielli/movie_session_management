@@ -4,6 +4,7 @@ require 'dbcon.php';
 
 $query2 = mysqli_query($con, "SELECT iddiretor, nomediretor FROM diretores");
 $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
+$query4 = mysqli_query($con, "SELECT idgenero,nomegenero FROM generos");
 
 ?>
 
@@ -34,7 +35,7 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="create-session.php">Nova Sessão</a>
+            <a class="nav-link" href="session-create.php">Nova Sessão</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="movie.php">Filmes</a>
@@ -67,11 +68,12 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
             <?php
             if (isset($_GET['idfilme'])) {
               $id_filme = mysqli_real_escape_string($con, $_GET['idfilme']);
-              $query = "SELECT  * 
-                            FROM filmes
-                            Join diretores on diretores.iddiretor = filmes.iddiretor
-                            Join paises on paises.idpais = filmes.idpais
-                            where filmes.idfilme ='$id_filme' ";
+              $query = "SELECT  filmes.idfilme,titulopt,tituloen, anolancamento, sinopse, duracao, datain, 
+              dataf,classificacao,iddiretor,idpais,nomediretor,nomepais,generos.idgenero,nomegenero,elenco
+              FROM filmes NATURAL JOIN diretores 
+              NATURAL JOIN paises 
+              LEFT JOIN generos on generos.idgenero = filmes.idgenero
+              where filmes.idfilme = '$id_filme' ";
               $query_run = mysqli_query($con, $query);
 
               if (mysqli_num_rows($query_run) > 0) {
@@ -79,6 +81,8 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
             ?>
 
                 <form action="code.php" method="POST">
+
+                  <input type="hidden" id="idfilme" name="idfilme" value="<?= $filmes['idfilme']; ?>">
 
                   <div class="mb-3">
                     <label>Titulo em Português</label>
@@ -94,7 +98,7 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
                   </div>
                   <div class="mb-3">
                     <label>Sinopse</label>
-                    <textarea type="varchar" id="sinopse" name="sinopse" value="<?= $filmes['sinopse']; ?>" class="form-control"></textarea>
+                    <textarea type="varchar" id="sinopse" name="sinopse" class="form-control"><?= $filmes['sinopse']; ?></textarea>
                   </div>
                   <div class="mb-3">
                     <label>Duração</label>
@@ -105,6 +109,16 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
                     <input type="varchar" id="classificacao" name="classificacao" value="<?= $filmes['classificacao']; ?>" class="form-control">
                   </div>
                   <div class="mb-3">
+                    <label>Gênero</label>
+                    <select class="form-select" id="idgenero" name="idgenero" aria-label="Default select example">
+                      <option selected value="<?= $filmes['idgenero']; ?>"><?php echo $filmes['nomegenero'] ?></option>
+                      <?php while ($genero = mysqli_fetch_array($query4)) { ?>
+                        <option value="<?php echo $genero['idgenero'] ?>"><?php echo $genero['nomegenero'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
                     <label>Data de início</label>
                     <input type="date" id="datain" name="datain" value="<?= $filmes['datain']; ?>" class="form-control">
                   </div>
@@ -112,6 +126,7 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
                     <label>Data de fim</label>
                     <input type="date" id="dataf" name="dataf" value="<?= $filmes['dataf']; ?>" class="form-control">
                   </div>
+                  
                   <div class="mb-3">
                     <label>Diretor</label>
                     <select class="form-select" id="iddiretor" name="iddiretor" aria-label="Default select example">
@@ -121,6 +136,12 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
                       <?php } ?>
                     </select>
                   </div>
+                  
+                  <div class="mb-3">
+                    <label>Elenco</label>
+                    <input type="varchar" id="elenco" name="elenco" value="<?= $filmes['elenco']; ?>" class="form-control">
+                  </div>
+
                   <div class="mb-3">
                     <label>País</label>
                     <select class="form-select" id="idpais" name="idpais" aria-label="Default select example">
@@ -132,7 +153,7 @@ $query3 = mysqli_query($con, "SELECT idpais,nomepais FROM paises");
                   </div>
 
                   <div class="mb-3 ">
-                    <button type="submit" name="save_movie" class="btn btn-primary">Salvar Filme</button>
+                    <button type="submit" name="update_movie" class="btn btn-primary">Atualizar Filme</button>
 
                   </div>
 

@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <title>UDESC Cine</title>
 </head>
-<body class="bg-secondary">
+<body class="bg-dark bg-gradient">
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
@@ -49,61 +49,28 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4> Cadastrar Diretor
-                            <a href="movie-create.php" class="btn btn-danger float-end">BACK</a>
+                        <h4> Nova Sala
+                            <a href="room-view.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
                         <form action="code.php" method="POST">
+
                             <div class="mb-3">
-                                <label>Nome Diretor</label>
-                                <input type="varchar" name="nomediretor" class="form-control">
+                                <label>Nome da Sala</label>
+                                <input type="varchar" name="nomesala" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label>Capacidade</label>
+                                <input type="int" name="capacidade" class="form-control">
                             </div>
                             <p></p>
                             <div class="mb-3">
-                                <button type="submit" name="save_director" class="btn btn-primary">Salvar Diretor</button>
+                                <button type="submit" name="save_sala" class="btn btn-primary">Criar Sala</button>
                             </div>
 
-                        </form>   
+                        </form>
                     </div>
-                    <table class="table  table-hover">
-                <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Diretores</th>
-                      <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <?php 
-            
-                    $query = "SELECT iddiretor,nomediretor FROM diretores";
-                    $query_run = mysqli_query($con, $query);
-
-                    if(mysqli_num_rows($query_run) > 0){
-
-                      foreach($query_run as $sessoes){
-
-                      ?>
-
-                      <tr>
-                          <td><?= $sessoes['iddiretor']; ?></td>
-                          <td><?= $sessoes['nomediretor']; ?></td>
-                          <td>                                          
-                            <form action="code.php" method="POST" class="d-inline">
-                                <button type="submit" name="delete_director" value="<?=$sessoes['iddiretor'];?>" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                          </td>
-                      </tr>
-                      <?php
-
-                    }} else {
-                        echo "<h5> No Record Found </h5>";
-                      }
-                  ?>
-                </tbody>
-              </table>
                 </div>
             </div>
         </div>
